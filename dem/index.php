@@ -1,8 +1,15 @@
 <?php
 include_once '../lib/Decidir.php';
 
-$decidir = new Decidir(array('puto'=>1, 'puta'=>2));
+$decidir = new Decidir(array (
+			'datos_obligatorios' => array (
+					'nombre' => 'gustavo',
+					'apellido' => 'ghioldi' 
+			),
+			'datos_opcionales' => array ('dni'=>25724484) 
+	));
 
-$decidir->getPayload();
+
+echo $decidir->getPayload ();
 
 
