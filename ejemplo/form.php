@@ -50,12 +50,12 @@ $array_parametros = array (
 		),
 		'urls' => array (
 				'url_ok' => '',
-				'url_error' => '' 
+				'url_error' => '',
+				'redirect_auto'=>true
 		) 
 );
 
-$decidir = new Decidir($array_parametros);
-
-print_r ($decidir->getPayload());
+$decidir = new SimpleXMLElement();
+var_dump($decidir);
 
 ?>
