@@ -1,8 +1,6 @@
 <?php
 class Decidir {
-	
-	private $array_parametros = array();
-	
+	private $array_parametros = array ();
 	public function __construct($array_parametros) {
 		$this->array_parametros = $array_parametros;
 	}
@@ -10,27 +8,27 @@ class Decidir {
 		return $url;
 	}
 	
-	//todo: cambiar a privado
-	public function getPayload() {	
-		$xml = new SimpleXMLElement ( '<root/>' );
-		array_walk_recursive ( $this->array_parametros, array (
-				$xml,
-				'addChild' 
-		) );
+	// todo: cambiar a privado
+	public function getPayload() {
+		$xml_string = "";
 		
-		$xml_return = "";
-		
-		foreach ( $xml as $key => $val ) {
-			$xml_return .= "<" . $val . ">" . $key . "</" . $val . ">";
+		foreach ( $this->array_parametros as $key => $value ) {
+			if ($key != 'urls') {
+				foreach ( $this->array_parametros [$key] as $child_key => $child_value ) {
+					$xml_string .= "<" . $child_key . ">" . $child_value . "</" . $child_key . ">";
+				}
+				;
+			}
 		}
 		
-		return $xml_return;
+		return $xml_string;
 	}
 	
 	private function getXml() {
 		$payload = $this->getPayload ();
 		return $xml;
 	}
+	
 	private function getToken() {
 		$token = new SoapClient ( $wsdl, $xml );
 		return $token;
