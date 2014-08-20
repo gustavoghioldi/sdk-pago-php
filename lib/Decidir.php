@@ -10,6 +10,7 @@ class Decidir {
 		return $url;
 	}
 	
+	//todo: cambiar a privado
 	public function getPayload() {	
 		$xml = new SimpleXMLElement ( '<root/>' );
 		array_walk_recursive ( $this->array_parametros, array (
