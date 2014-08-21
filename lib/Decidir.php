@@ -1,14 +1,17 @@
 <?php
-class Decidir {
+class DecidirConnector {
 	
-	private $array_parametros = array ();
+	private $arrayParametros = array ();
 	
-	public function __construct($array_parametros) {
-		$this->array_parametros = $array_parametros;
+	public function __construct($arrayParametros) {
+		$this->arrayParametros = $arrayParametros;
 	}
 	
-	public function makePay() {
-		switch ($this->array_parametros ['urls'] ['redirect_auto']) {
+	public function beginPayment() {
+		
+		$token = $this->getToken();
+		
+		switch ($this->arrayParametros ['urls'] ['redirectAuto']) {
 			case TRUE :
 				// redireccionar a la url que me mandan
 				break;
@@ -21,30 +24,31 @@ class Decidir {
 		}
 	}
 	
+	public function queryPayment(){
+		//todo: confirma / consulta el pago
+	}
+	
 	
 	 private function getPayload() {
-		$xml_payload = "";
+		$xmlPayload = "";
 		
-		foreach ( $this->array_parametros as $key => $value ) {
+		foreach ( $this->arrayParametros as $key => $value ) {
 			if ($key != 'urls') {
-				foreach ( $this->array_parametros [$key] as $child_key => $child_value ) {
-					if ($child_key != "nro_operacio") {
-						$payload_string .= "<" . $child_key . ">" . $child_value . "</" . $child_key . ">";
+				foreach ( $this->arraParametros [$key] as $childKey => $childValue ) {
+					if ($childKey != "nro_operacio") {
+						$payloadString .= "<" . $childKey . ">" . $childValue . "</" . $childKey . ">";
 					}
 				}
 			}
 		}
 		
-		return $xml_payload;
+		return $xmlPayload;
 	}
 	
-	private function getXml() {
-		$payload = $this->getPayload ();
-		return $xml;
-	}
 	
 	private function getToken() {
-		$token = new SoapClient ( $wsdl, $xml );
+		$xmlPayload = $this->getPayload();
+		$token = new SoapClient ( $wsdl, $xmlPayload );
 		return $token;
 	}
 	
