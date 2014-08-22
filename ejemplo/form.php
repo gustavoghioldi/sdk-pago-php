@@ -55,7 +55,8 @@ $array_parametros = array (
 		) 
 );
 
-$decidir = new SimpleXMLElement();
-var_dump($decidir);
+
+
+
 
 ?>

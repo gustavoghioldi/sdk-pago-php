@@ -24,7 +24,7 @@ class DecidirConnector {
 		}
 	}
 	
-	public function queryPayment(){
+	public function queryPayment($arrayQueryConfirm){
 		//todo: confirma / consulta el pago
 	}
 	
@@ -46,11 +46,11 @@ class DecidirConnector {
 	}
 	
 	
-	private function getToken() {
+	private function getAuthorizeRequest() {
 		$xmlPayload = $this->getPayload();
 		$token = new SoapClient ( $wsdl, $xmlPayload );
 		return $token;
+		
 	}
-	
 	
 }
