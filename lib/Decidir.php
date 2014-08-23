@@ -1,40 +1,35 @@
 <?php
 class DecidirConnector {
-	
-	private $arrayParametros = array ();
-	
-	public function __construct($arrayParametros) {
-		$this->arrayParametros = $arrayParametros;
+	private $parameters = array ();
+	private function __construct($arrayParametros) {
+		$this->parameters = $parameters;
 	}
-	
 	public function beginPayment() {
+		$authorizeRequestParameters = $this->parseAuthorizeRequest (); // parsea la informacion pasada por el usuario
+		$clientSoapAuthorizeRequest = $this->getAuthorizeRequest ( $authorizeRequestParameters ); // comunica con el Soap Client y obtine un respuesta
+		$authorizeRequestResponseParameters = $this->parseAuthorizeRequestResponse ( $clientSoapAuthorizeRequest ); // parsea la respuesta del Soap Client
 		
-		$token = $this->getToken();
+		$URL_Request = $authorizeRequestResponseParameters ['URL_Request'];
 		
-		switch ($this->arrayParametros ['urls'] ['redirectAuto']) {
-			case TRUE :
-				// redireccionar a la url que me mandan
-				break;
-			case FALSE :
-				return $url;
-				break;
-			default :
-				// ver que deccion tomo
-				break;
-		}
+		return $URL_Request;
 	}
-	
-	public function queryPayment($arrayQueryConfirm){
-		//todo: confirma / consulta el pago
+	private function parseAuthorizeRequest() {
+		return $authorizeRequestParameters;
 	}
-	
-	
-	 private function getPayload() {
+	private function getAuthorizeRequest($authorizeRequestParameters) {
+		$clientSoapAuthorizeRequest = new SoapClient ( $authorizeRequestParameters ['wsdl'], $authorizeRequestParameters ['options'] );
+		
+		return $clientSoapAuthorizeRequest;
+	}
+	private function parseAuthorizeRequestResponse($clientSoapAuthorizeRequest) {
+		return $authorizeRequestResponseParameters;
+	}
+	private function getPayloadAux() {
 		$xmlPayload = "";
 		
-		foreach ( $this->arrayParametros as $key => $value ) {
+		foreach ( $this->parameters as $key => $value ) {
 			if ($key != 'urls') {
-				foreach ( $this->arraParametros [$key] as $childKey => $childValue ) {
+				foreach ( $this->parameters [$key] as $childKey => $childValue ) {
 					if ($childKey != "nro_operacio") {
 						$payloadString .= "<" . $childKey . ">" . $childValue . "</" . $childKey . ">";
 					}
@@ -45,12 +40,17 @@ class DecidirConnector {
 		return $xmlPayload;
 	}
 	
-	
-	private function getAuthorizeRequest() {
-		$xmlPayload = $this->getPayload();
-		$token = new SoapClient ( $wsdl, $xmlPayload );
-		return $token;
-		
+	public function queryPayment();
+	private function parseAuthorizeAnswer();
+	private function getAuthorizeAnswer();
+	private function parseAuthorizeAnswerResponse();
+
+	//singleton
+	protected static $instancia;
+	public static function getInstance() {
+		if (! self::$instancia instanceof self) {
+			self::$instancia = new self ();
+		}
+		return self::$instancia;
 	}
-	
 }

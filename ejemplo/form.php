@@ -50,8 +50,7 @@ $array_parametros = array (
 		),
 		'urls' => array (
 				'url_ok' => '',
-				'url_error' => '',
-				'redirect_auto'=>true
+				'url_error' => ''
 		) 
 );
 
