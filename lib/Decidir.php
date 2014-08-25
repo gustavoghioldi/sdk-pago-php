@@ -1,9 +1,11 @@
 <?php
 class DecidirConnector {
+	
 	private $parameters = array ();
 	private function __construct($arrayParametros) {
 		$this->parameters = $parameters;
 	}
+	
 	public function beginPayment() {
 		$authorizeRequestParameters = $this->parseAuthorizeRequest (); // parsea la informacion pasada por el usuario
 		$clientSoapAuthorizeRequest = $this->getAuthorizeRequest ( $authorizeRequestParameters ); // comunica con el Soap Client y obtine un respuesta
