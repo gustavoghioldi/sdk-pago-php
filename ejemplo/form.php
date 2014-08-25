@@ -1,7 +1,7 @@
 <?php
 include_once '../lib/Decidir.php';
 
-$array_parametros = array (
+$options = array (
 		'obligatorios' => array (
 				'nro_comercio' => '',
 				'nro_operacion' => '',

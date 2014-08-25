@@ -1,37 +1,35 @@
 <?php
+define ( 'VERSION', '0.0.1-GUS' );
+define ( 'END_POINT', "https://200.69.248.51:8443/services/t/decidir.net/Authorize.AuthorizeHttpsSoap12Endpoint" );
 class DecidirConnector {
-	
-	private $parameters = array ();
-	private function __construct($arrayParametros) {
-		$this->parameters = $parameters;
+	private $options = array ();
+	private function __construct($options = '') {
+		$this->options = $options;
 	}
-	
-	public function beginPayment() {
-		$authorizeRequestParameters = $this->parseAuthorizeRequest (); // parsea la informacion pasada por el usuario
-		$clientSoapAuthorizeRequest = $this->getAuthorizeRequest ( $authorizeRequestParameters ); // comunica con el Soap Client y obtine un respuesta
-		$authorizeRequestResponseParameters = $this->parseAuthorizeRequestResponse ( $clientSoapAuthorizeRequest ); // parsea la respuesta del Soap Client
+	public function getPaymentValues() {
+		$authorizeRequestValues = $this->parseAuthorizeRequest (); // parsea la informacion pasada por el usuario
+		$clientSoapAuthorizeRequest = $this->getAuthorizeRequest ( $authorizeRequestValues ); // comunica con el Soap Client y obtine un respuesta
+		$authorizeRequestResponseValues = $this->parseAuthorizeRequestResponse ( $clientSoapAuthorizeRequest ); // parsea la respuesta del Soap Client
 		
-		$URL_Request = $authorizeRequestResponseParameters ['URL_Request'];
-		
-		return $URL_Request;
+		return $authorizeRequestResponseValues;
 	}
 	private function parseAuthorizeRequest() {
-		return $authorizeRequestParameters;
+		return $authorizeRequestOptions;
 	}
-	private function getAuthorizeRequest($authorizeRequestParameters) {
-		$clientSoapAuthorizeRequest = new SoapClient ( $authorizeRequestParameters ['wsdl'], $authorizeRequestParameters ['options'] );
+	private function getAuthorizeRequest($authorizeRequestOptions) {
+		$clientSoapAuthorizeRequest = new SoapClient ( END_POINT, $authorizeRequestOptions ['options'] );
 		
 		return $clientSoapAuthorizeRequest;
 	}
 	private function parseAuthorizeRequestResponse($clientSoapAuthorizeRequest) {
-		return $authorizeRequestResponseParameters;
+		return $authorizeRequestResponseOptions;
 	}
-	private function getPayloadAux() {
+	private function getPayload() {
 		$xmlPayload = "";
 		
-		foreach ( $this->parameters as $key => $value ) {
+		foreach ( $this->options as $key => $value ) {
 			if ($key != 'urls') {
-				foreach ( $this->parameters [$key] as $childKey => $childValue ) {
+				foreach ( $this->options [$key] as $childKey => $childValue ) {
 					if ($childKey != "nro_operacio") {
 						$payloadString .= "<" . $childKey . ">" . $childValue . "</" . $childKey . ">";
 					}
@@ -41,18 +39,15 @@ class DecidirConnector {
 		
 		return $xmlPayload;
 	}
-	
-	public function queryPayment();
-	private function parseAuthorizeAnswer();
-	private function getAuthorizeAnswer();
-	private function parseAuthorizeAnswerResponse();
-
-	//singleton
-	protected static $instancia;
-	public static function getInstance() {
-		if (! self::$instancia instanceof self) {
-			self::$instancia = new self ();
-		}
-		return self::$instancia;
+	public function queryPayment($SessionID, $RequestKey, $AnswerKey) {
+		return $authorizeAnswerRequestResponseValues;
+	}
+	private function parseAuthorizeAnswer() {
+		return $authorizeAnswerRequestValues;
+	}
+	private function getAuthorizeAnswer() {
+		$clientSoapAuthorizeAnswer = SoapClient ();
+	}
+	private function parseAuthorizeAnswerResponse($clientSoapAuthorizeAnswer) {
 	}
 }
