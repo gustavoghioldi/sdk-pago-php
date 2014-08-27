@@ -1,5 +1,4 @@
 <?php
-include_once '../lib/Decidir.php';
 
 $options = array (
 		'obligatorios' => array (
@@ -55,7 +54,5 @@ $options = array (
 );
 
 
-
-
-
+	
 ?>

@@ -1,0 +1,154 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="urn:Authorize" xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="urn:Authorize/Authorize.wsdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="urn:Authorize/Authorize.wsdl">
+<wsdl:types>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:Authorize">
+<import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="Authorize?xsd=http://schemas.xmlsoap.org/soap/encoding/"/>
+<element name="AuthorizeRequest">
+<complexType>
+<sequence>
+<element name="SessionID" type="string"/>
+<element minOccurs="0" name="URL_OK" nillable="true" type="string"/>
+<element minOccurs="0" name="URL_ERROR" nillable="true" type="string"/>
+<element name="EncodingMethod" nillable="true" type="string"/>
+<element minOccurs="0" name="Payload" nillable="true" type="anyType"/>
+</sequence>
+</complexType>
+</element>
+<element name="AuthorizeRequestResponse">
+<complexType>
+<sequence>
+<element name="Status" type="int"/>
+<element minOccurs="0" name="URL_Request" nillable="true" type="string"/>
+<element minOccurs="0" name="RequestKey" nillable="true" type="string"/>
+</sequence>
+</complexType>
+</element>
+<element name="AuthorizeAnswer">
+<complexType>
+<sequence>
+<element name="SessionID" type="string"/>
+<element minOccurs="0" name="RequestKey" nillable="true" type="string"/>
+<element minOccurs="0" name="AnswerKey" nillable="true" type="string"/>
+</sequence>
+</complexType>
+</element>
+<element name="AuthorizeAnswerResponse">
+<complexType>
+<sequence>
+<element name="Status" type="int"/>
+<element name="EncodingMethod" nillable="true" type="string"/>
+<element minOccurs="0" name="Payload" nillable="true" type="anyType"/>
+</sequence>
+</complexType>
+</element>
+</schema>
+</wsdl:types>
+<wsdl:message name="AuthorizeAnswer">
+<wsdl:part name="parameters" element="ns:AuthorizeAnswer"/>
+</wsdl:message>
+<wsdl:message name="AuthorizeAnswerResponse">
+<wsdl:part name="parameters" element="ns:AuthorizeAnswerResponse"/>
+</wsdl:message>
+<wsdl:message name="AuthorizeRequest">
+<wsdl:part name="parameters" element="ns:AuthorizeRequest"/>
+</wsdl:message>
+<wsdl:message name="AuthorizeRequestResponse">
+<wsdl:part name="parameters" element="ns:AuthorizeRequestResponse"/>
+</wsdl:message>
+<wsdl:portType name="AuthorizePortType">
+<wsdl:operation name="AuthorizeAnswer">
+<wsdl:documentation>Service definition of function ns__AuthorizeAnswer</wsdl:documentation>
+<wsdl:input message="tns:AuthorizeAnswer"/>
+<wsdl:output message="tns:AuthorizeAnswerResponse" wsaw:Action="urn:Authorize/Authorize.wsdl:AuthorizePortType:AuthorizeAnswerResponse"/>
+</wsdl:operation>
+<wsdl:operation name="AuthorizeRequest">
+<wsdl:documentation>
+Service definition of function ns__AuthorizeRequest
+</wsdl:documentation>
+<wsdl:input message="tns:AuthorizeRequest"/>
+<wsdl:output message="tns:AuthorizeRequestResponse" wsaw:Action="urn:Authorize/Authorize.wsdl:AuthorizePortType:AuthorizeRequestResponse"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="AuthorizeSoap11Binding" type="tns:AuthorizePortType">
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<wsdl:operation name="AuthorizeAnswer">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="AuthorizeRequest">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:binding name="AuthorizeSoap12Binding" type="tns:AuthorizePortType">
+<soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<wsdl:operation name="AuthorizeAnswer">
+<soap12:operation soapAction="" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="AuthorizeRequest">
+<soap12:operation soapAction="" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:binding name="AuthorizeHttpBinding" type="tns:AuthorizePortType">
+<http:binding verb="POST"/>
+<wsdl:operation name="AuthorizeAnswer">
+<http:operation location="AuthorizeAnswer"/>
+<wsdl:input>
+<mime:content type="text/xml" part="parameters"/>
+</wsdl:input>
+<wsdl:output>
+<mime:content type="text/xml" part="parameters"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="AuthorizeRequest">
+<http:operation location="AuthorizeRequest"/>
+<wsdl:input>
+<mime:content type="text/xml" part="parameters"/>
+</wsdl:input>
+<wsdl:output>
+<mime:content type="text/xml" part="parameters"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="Authorize">
+<wsdl:port name="AuthorizeHttpsSoap11Endpoint" binding="tns:AuthorizeSoap11Binding">
+<soap:address location="https://192.168.135.35:8443/services/t/decidir.net/Authorize.AuthorizeHttpsSoap11Endpoint"/>
+</wsdl:port>
+<wsdl:port name="AuthorizeHttpSoap11Endpoint" binding="tns:AuthorizeSoap11Binding">
+<soap:address location="http://192.168.135.35:8480/services/t/decidir.net/Authorize.AuthorizeHttpSoap11Endpoint"/>
+</wsdl:port>
+<wsdl:port name="AuthorizeHttpSoap12Endpoint" binding="tns:AuthorizeSoap12Binding">
+<soap12:address location="http://192.168.135.35:8480/services/t/decidir.net/Authorize.AuthorizeHttpSoap12Endpoint"/>
+</wsdl:port>
+<wsdl:port name="AuthorizeHttpsSoap12Endpoint" binding="tns:AuthorizeSoap12Binding">
+<soap12:address location="https://192.168.135.35:8443/services/t/decidir.net/Authorize.AuthorizeHttpsSoap12Endpoint"/>
+</wsdl:port>
+<wsdl:port name="AuthorizeHttpsEndpoint" binding="tns:AuthorizeHttpBinding">
+<http:address location="https://192.168.135.35:8443/services/t/decidir.net/Authorize.AuthorizeHttpsEndpoint"/>
+</wsdl:port>
+<wsdl:port name="AuthorizeHttpEndpoint" binding="tns:AuthorizeHttpBinding">
+<http:address location="http://192.168.135.35:8480/services/t/decidir.net/Authorize.AuthorizeHttpEndpoint"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
