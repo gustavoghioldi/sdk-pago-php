@@ -15,9 +15,8 @@ foreach ( $cliente_tipo as $tipo ) {
 
 echo "<br />";
 echo "funciones <br />";
+
 foreach ( $cliente_funciones as $funciones ) {
 	echo ( $funciones );
 	echo "<br />";
 }
-
-

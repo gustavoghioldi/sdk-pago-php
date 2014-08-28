@@ -1,32 +1,21 @@
 <?php
 
 $options = array (
-		'obligatorios' => array (
-				'nro_comercio' => '',
+				'NROCOMERCIO' => '',
 				'nro_operacion' => '',
 				'monto' => '',
 				'cuotas' => '',
 				'medio_de_pago' => '',
-		),
-		'opcionales'=> array(
 				'email_cliente' => '',
-				'param_sitio' => ''
-		),
-		'transacciones_distribuidas' => array (
-				'nro_comercio' => '',
+				'param_sitio' => '',	
 				'imp_dist' => '',
 				'site_dist' => '',
 				'id_modalidad' => '',
-				'porcentaje' => ''  // pedir mas documentacion sobre este tema
-				),
-		'visa_adicional_opcional' => array (
-				'tipo_doc' => '',
+				'porcentaje' => '',  
 				'nro_doc' => '',
 				'calle_entrega' => '',
 				'nro_puerta' => '',
-				'fecha_nacimiento' => '' 
-		),
-		'rapipago_pagofacil_adicionales' => array (
+				'fecha_nacimiento' => '',
 				'cod_p1' => '',
 				'cod_p2' => '',
 				'cod_p3' => '',
@@ -36,23 +25,11 @@ $options = array (
 				'cliente' => '',
 				'titular' => '',
 				'tipo_toc' => '',
-				'nro_doc' => '' 
-		),
-		'pago_mis_cuentas' => array (
-				'fecha_vto' => '' 
-		),
-		'nevada' => array (
-				'id_plan' => '' 
-		),
-		'visa' => array (
-				'vtex1x2x3x4' => '' 
-		),
-		'urls' => array (
+				'nro_doc' => '',
+				'fecha_vto' => '',
+				'id_plan' => '',
+				'vtex1x2x3x4' => '',
 				'url_ok' => '',
-				'url_error' => ''
-		) 
-);
+				'url_error' => '');
 
-
-	
 ?>
