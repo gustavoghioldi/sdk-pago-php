@@ -20,3 +20,17 @@ foreach ( $cliente_funciones as $funciones ) {
 	echo ( $funciones );
 	echo "<br />";
 }
+
+$ojeto = new stdClass();
+
+$ojeto->nombre = 'gustavo ghioldi';
+$ojeto->apellido = 'ghioldi';
+
+print_r($ojeto);
+
+echo "<br />";
+
+$array = json_decode(json_encode($ojeto), true);
+
+
+
