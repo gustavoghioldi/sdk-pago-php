@@ -1,10 +1,14 @@
 <?php
-define ( 'VERSION', '0.0.1-GUS' );
+define ( 'VERSION', '0.1.0-GUS' );
 define ( 'END_POINT', "http://200.69.248.51:8443/services/t/decidir.net/Authorize.AuthorizeHttpsSoap12Endpoint?wsdl" );
 define ( 'OLD_END_POINT', "http://api.decidir.com.ar/services/Authorize" );
 define ( 'ENCODING_METHOD', "UTF-8" );
 
 class DecidirConnector {
+	
+	/*
+	 * GET_PAYMENT_VALUES
+	* */
 	
 	public function getPaymentValues($options) {
 		//parseo de los valores enviados por el e-commerce/custompage par aformar el obj autorizereuest

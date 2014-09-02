@@ -126,7 +126,7 @@
 <service name="Authorize">
  <documentation>Decidir Authorization Service</documentation>
  <port name="Authorize" binding="tns:Authorize">
-  <SOAP:address location="https://200.69.248.51:8443/services/t/decidir.net/Authorize.AuthorizeHttpsSoap12Endpoint"/>
+  <SOAP:address location="https://200.69.248.51:9443/services/t/decidir.net/Authorize.AuthorizeHttpsSoap12Endpoint"/>
  </port>
 </service>
 
