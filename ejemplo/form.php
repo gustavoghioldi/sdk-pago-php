@@ -64,6 +64,6 @@ $options = array (
 //  ) );
 
 $client = new DecidirConnector();
-$values = $client->getPaymentValues($options);
+$values = $client->getPaymentValues(null);
 header("Location:".$values['URL_Request']);
 ?>

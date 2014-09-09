@@ -39,7 +39,7 @@ class DecidirConnector {
 				'local_cert' => CERT,
 				'style' => SOAP_DOCUMENT,
 				'use' => SOAP_LITERAL,
-				'location' => 'https://200.69.248.51:8443/services/t/decidir.net/Authorize',
+				'location' => END_POINT,
 				'encoding' => 'UTF-8',
 				'proxy_host' => '192.168.0.17',
 				'proxy_port' => 8080 
