@@ -1,0 +1,127 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://api.decidir.com.ar" xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://api.decidir.com.ar" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://api.decidir.com.ar"> 
+   <wsdl:types> 
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://api.decidir.com.ar"> 
+         <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/> 
+         <element name="AuthorizeRequest"> 
+            <complexType> 
+               <sequence> 
+					 <element name="Merchant"       type="xsd:string"  minOccurs="1" maxOccurs="1"/>
+					 <element name="Session"        type="xsd:string"  minOccurs="0" maxOccurs="1" nillable="true"/>
+					 <element name="Security"       type="xsd:string"  minOccurs="0" maxOccurs="1" nillable="true"/>
+					 <element name="URL_OK"         type="xsd:string"  minOccurs="0" maxOccurs="1" nillable="true"/>
+					 <element name="URL_ERROR"      type="xsd:string"  minOccurs="0" maxOccurs="1" nillable="true"/>
+					 <element name="EncodingMethod" type="xsd:string"  minOccurs="1" maxOccurs="1"/>
+					 <element name="Payload"        type="xsd:anyType" minOccurs="0" maxOccurs="1" nillable="true"/>
+               </sequence> 
+            </complexType> 
+         </element> 
+         <element name="AuthorizeRequestResponse"> 
+            <complexType> 
+               <sequence> 
+					 <element name="StatusCode"     type="xsd:int"     minOccurs="1" maxOccurs="1"/>
+					 <element name="StatusMessage"  type="xsd:string"  minOccurs="0" maxOccurs="1" nillable="true"/>
+					 <element name="URL_Request"    type="xsd:string"  minOccurs="0" maxOccurs="1" nillable="true"/>
+					 <element name="RequestKey"     type="xsd:string"  minOccurs="0" maxOccurs="1" nillable="true"/>
+					 <element name="EncodingMethod" type="xsd:string"  minOccurs="1" maxOccurs="1"/>
+					 <element name="Payload"        type="xsd:anyType" minOccurs="0" maxOccurs="1" nillable="true"/>
+               </sequence> 
+            </complexType> 
+         </element> 
+         <element name="AuthorizeAnswer"> 
+            <complexType> 
+               <sequence> 
+					 <element name="Merchant"       type="xsd:string"  minOccurs="1" maxOccurs="1"/>
+					 <element name="Session"        type="xsd:string"  minOccurs="0" maxOccurs="1" nillable="true"/>
+					 <element name="Security"       type="xsd:string"  minOccurs="0" maxOccurs="1" nillable="true"/>
+					 <element name="RequestKey"     type="xsd:string"  minOccurs="0" maxOccurs="1" nillable="true"/>
+					 <element name="AnswerKey"      type="xsd:string"  minOccurs="0" maxOccurs="1" nillable="true"/>
+               </sequence> 
+            </complexType> 
+         </element> 
+         <element name="AuthorizeAnswerResponse"> 
+            <complexType> 
+               <sequence> 
+					 <element name="StatusCode"     type="xsd:int"     minOccurs="1" maxOccurs="1"/>
+					 <element name="StatusMessage"  type="xsd:string"  minOccurs="0" maxOccurs="1" nillable="true"/>
+					 <element name="EncodingMethod" type="xsd:string"  minOccurs="1" maxOccurs="1"/>
+					 <element name="Payload"        type="xsd:anyType" minOccurs="0" maxOccurs="1" nillable="true"/>
+              </sequence> 
+            </complexType> 
+         </element> 
+      </schema> 
+   </wsdl:types> 
+   <wsdl:message name="AuthorizeRequest"> 
+      <wsdl:part name="parameters" element="ns:AuthorizeRequest"/> 
+   </wsdl:message> 
+   <wsdl:message name="AuthorizeRequestResponse"> 
+      <wsdl:part name="parameters" element="ns:AuthorizeRequestResponse"/> 
+   </wsdl:message> 
+   <wsdl:message name="AuthorizeAnswer"> 
+      <wsdl:part name="parameters" element="ns:AuthorizeAnswer"/> 
+   </wsdl:message> 
+   <wsdl:message name="AuthorizeAnswerResponse"> 
+      <wsdl:part name="parameters" element="ns:AuthorizeAnswerResponse"/> 
+   </wsdl:message> 
+   <wsdl:portType name="AuthorizePortType"> 
+      <wsdl:operation name="AuthorizeRequest"> 
+         <wsdl:documentation>Service definition of Operation AuthorizeRequest: Utilizada para enviar el requerimiento de Autorizacion, en el caso de Cientes PCI, retorna la respuesta de la Autorizacion </wsdl:documentation> 
+         <wsdl:input message="tns:AuthorizeRequest"/> 
+         <wsdl:output message="tns:AuthorizeRequestResponse" wsaw:Action="http://api.decidir.com.ar/AuthorizePortType/AuthorizeRequestResponse"/> 
+      </wsdl:operation> 
+      <wsdl:operation name="AuthorizeAnswer"> 
+         <wsdl:documentation>Service definition of Operation AuthorizeAnswer: Utilizada para recuerar los datos de la Respuesta de la Autorizacion en el Caso de Clientes no PCI</wsdl:documentation> 
+         <wsdl:input message="tns:AuthorizeAnswer"/> 
+         <wsdl:output message="tns:AuthorizeAnswerResponse" wsaw:Action="http://api.decidir.com.ar/AuthorizePortType/AuthorizeAnswerResponse"/> 
+      </wsdl:operation> 
+   </wsdl:portType> 
+   <wsdl:binding name="AuthorizeSoap11Binding" type="tns:AuthorizePortType"> 
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/> 
+      <wsdl:operation name="AuthorizeRequest"> 
+         <soap:operation soapAction="" style="document"/> 
+         <wsdl:input> 
+            <soap:body use="literal"/> 
+         </wsdl:input> 
+         <wsdl:output> 
+            <soap:body use="literal"/> 
+         </wsdl:output> 
+      </wsdl:operation> 
+      <wsdl:operation name="AuthorizeAnswer"> 
+         <soap:operation soapAction="" style="document"/> 
+         <wsdl:input> 
+            <soap:body use="literal"/> 
+         </wsdl:input> 
+         <wsdl:output> 
+            <soap:body use="literal"/> 
+         </wsdl:output> 
+      </wsdl:operation> 
+   </wsdl:binding> 
+   <wsdl:binding name="AuthorizeSoap12Binding" type="tns:AuthorizePortType"> 
+      <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/> 
+      <wsdl:operation name="AuthorizeRequest"> 
+         <soap12:operation soapAction="" style="document"/> 
+         <wsdl:input> 
+            <soap12:body use="literal"/> 
+         </wsdl:input> 
+         <wsdl:output> 
+            <soap12:body use="literal"/> 
+         </wsdl:output> 
+      </wsdl:operation> 
+      <wsdl:operation name="AuthorizeAnswer"> 
+         <soap12:operation soapAction="" style="document"/> 
+         <wsdl:input> 
+            <soap12:body use="literal"/> 
+         </wsdl:input> 
+         <wsdl:output> 
+            <soap12:body use="literal"/> 
+         </wsdl:output> 
+      </wsdl:operation> 
+   </wsdl:binding> 
+   <wsdl:service name="Authorize"> 
+      <wsdl:port name="AuthorizeHttpsSoap11Endpoint" binding="tns:AuthorizeSoap11Binding"> 
+         <soap:address location="https://api.decidir.com.ar/services/Authorize.AuthorizeHttpsSoap11Endpoint"/> 
+      </wsdl:port> 
+      <wsdl:port name="AuthorizeHttpsSoap12Endpoint" binding="tns:AuthorizeSoap12Binding"> 
+         <soap12:address location="https://api.decidir.com.ar/services/Authorize.AuthorizeHttpsSoap12Endpoint"/> 
+      </wsdl:port> 
+   </wsdl:service> 
+</wsdl:definitions>
