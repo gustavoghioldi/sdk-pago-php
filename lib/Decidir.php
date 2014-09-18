@@ -1,10 +1,15 @@
 <?php
 define ( 'VERSION', '0.1.0-GUS' );
-define ( 'WSDL', "Authorize.wsdl" );
+define ( 'WSDL', "Authorizev22.wsdl" );
 define ( 'END_POINT', "https://200.69.248.51:8443/services/t/decidir.net/Authorize" );
+define ('END_POINT_TEST', "");
 define ( 'ENCODING_METHOD', "UTF-8" );
-define ( 'CERT', "certificado.pem");
+define ( 'CERT', "certificado.pem" );
 class DecidirConnector {
+	
+	/*
+	 * configuraciones opcionales
+	 */
 	
 	/*
 	 * GET_PAYMENT_VALUES
@@ -28,12 +33,12 @@ class DecidirConnector {
 		$authorizeRequest->URL_ERROR = $options ['url_error'];
 		$authorizeRequest->SessionID = $options ['nrooperacion'];
 		$authorizeRequest->EncodingMethod = $options ['encodingmethod'];
-		
+		$authorizeRequest->Merchant = null;
 		return $authorizeRequest;
 	}
 	
 	// ver esta funcoion que es la que me va a trater el token
-	private function getAuthorizeRequestResponse($authorizeRequest) {
+	private function getClientSoap() {
 		$clientSoap = new SoapClient ( WSDL, array (
 				"connection_timeout" => 1000,
 				'local_cert' => CERT,
@@ -46,9 +51,16 @@ class DecidirConnector {
 		// // 'proxy_login' => 'gghioldi',
 		// // 'proxy_password' => '1270pesecin'
 				) );
+		
+		return $clientSoap;
+	}
+	
+	private function getAuthorizeRequestResponse($authorizeRequest) {
+		$clientSoap = $this->getClientSoap ();
 		$authorizeRequestResponse = $clientSoap->AuthorizeRequest ( $authorizeRequest );
 		return $authorizeRequestResponse;
 	}
+	
 	private function parseAuthorizeRequestResponseToArray($authorizeRequestResponse) {
 		$authorizeRequestResponseOptions = $array = json_decode ( json_encode ( $authorizeRequestResponse ), true );
 		
