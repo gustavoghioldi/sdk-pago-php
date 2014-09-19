@@ -18,11 +18,29 @@ $client = new DecidirConnector();
 ```
 
 2.Solicitud de autorización
-En este caso hay que llamar a getPaymentValues(). 
+En este caso hay que llamar a getPaymentValues. 
 ```php
 $values = $client->getPaymentValues($options);
 ```
-Este m&eacute;todo devolvera:
+$options debe ser un array con la siguiente estuctura:
+$options = array (
+		'NROCOMERCIO' => '12345678',
+		'NROOPERACION' => '00000012',
+		'MONTO' => '10998.00',
+		'CUOTAS' => '09',
+		'MEDIODEPAGO' => '1',
+		'EMAILCLIENTE' => 'cliente@cliente.com', //opcional
+		'PARAMSITIO' => 'PARAM_SITIO', //opcional
+		..............................
+		);
+
+El m&eacute;todo getPaymentValues devolvera un arreglo con los siguiente valores:
+- StatusCode
+- StatusMessage
+- URL_Request
+- RequestKey
+- EncodingMethod
+- Payload
 
 3.Confirmación de transacción.
 En este caso hay que llamar a queryPayment, enviando SessionID, RequestKey y AnswerKey. Este método devuelve el resumen de los datos de la transacción, para que puedan ser mostrados al cliente.
