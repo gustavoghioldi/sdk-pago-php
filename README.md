@@ -23,7 +23,7 @@ En este caso hay que llamar a getPaymentValues.
 $values = $client->getPaymentValues($options);
 ```
 $options debe ser un array con la siguiente estuctura:
-$options = array (
+```$options = array (
 		'NROCOMERCIO' => '12345678',
 		'NROOPERACION' => '00000012',
 		'MONTO' => '10998.00',
@@ -32,7 +32,7 @@ $options = array (
 		'EMAILCLIENTE' => 'cliente@cliente.com', //opcional
 		'PARAMSITIO' => 'PARAM_SITIO', //opcional
 		..............................
-		);
+		);```
 
 El m&eacute;todo getPaymentValues devolvera un arreglo con los siguiente valores:
 - StatusCode
