@@ -4,6 +4,7 @@ Conector en php con el SPS Decidir.
  * [Instalación](#instalacion)
  * [Uso](#uso)
  * [Ejemplo](#ejemplo)
+ * [Modo test](#test)
  
 <a name="instalacion"></a>
 ## Instalación
@@ -30,7 +31,7 @@ En este caso hay que llamar a queryPayment, enviando SessionID, RequestKey y Ans
 Existe un ejercicio de ejemplo en la carpeta del mismo nombre.
 
 <a name="test"></a>
-## Test
+## Modo Test
 Para utlilizar el modo test se debe pasar el valor FALSE en el constructor.
 
 ```php
