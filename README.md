@@ -26,12 +26,18 @@ $options debe ser un array con la siguiente estuctura:
 
 ```php
 $options = array (
+		'Merchant'=>'',
+		'Session'=>'',
+		'Security'=>'',
+		'URL_OK'=>'http://susitio.com/paydecidir/ok', //url a la que desae sea devuleto el comprador cuando realize una transaccion exitosa
+		'URL_ERROR'=>'http://susitio.com/paydecidir/error', //url a la que desae sea devuelto el comprador cuando no realice una transacción exitosa
+		'EncodingMethod'=>'',
 		'NROCOMERCIO' => '12345678', //Nro de comercio provisto por SPS-DECIDIR
 		'NROOPERACION' => '00000012', //String mediante el cual el comercio identifica univocamente la transacción
 		'MONTO' => '10998.00', //Importe en pesos de la transacción
 		'CUOTAS' => '09', //Cantidad de coutas
-		'MEDIODEPAGO' => '1', 
-		'EMAILCLIENTE' => 'cliente@cliente.com', //opcional (#emailcliente)
+		'MEDIODEPAGO' => '1', //la tabla de medios de pagos se encuentra al final de la documentación
+		'EMAILCLIENTE' => 'cliente@cliente.com', //opcional
 		'PARAMSITIO' => 'PARAM_SITIO', //opcional
 		..............................
 		);
