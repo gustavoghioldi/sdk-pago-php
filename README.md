@@ -23,16 +23,19 @@ En este caso hay que llamar a getPaymentValues.
 $values = $client->getPaymentValues($options);
 ```
 $options debe ser un array con la siguiente estuctura:
-```$options = array (
-		'NROCOMERCIO' => '12345678',
-		'NROOPERACION' => '00000012',
-		'MONTO' => '10998.00',
-		'CUOTAS' => '09',
-		'MEDIODEPAGO' => '1',
-		'EMAILCLIENTE' => 'cliente@cliente.com', //opcional
+
+```php
+$options = array (
+		'NROCOMERCIO' => '12345678', //Nro de comercio provisto por SPS-DECIDIR
+		'NROOPERACION' => '00000012', //String mediante el cual el comercio identifica univocamente la transacción
+		'MONTO' => '10998.00', //Importe en pesos de la transacción
+		'CUOTAS' => '09', //Cantidad de coutas
+		'MEDIODEPAGO' => '1', 
+		'EMAILCLIENTE' => 'cliente@cliente.com', //opcional (#emailcliente)
 		'PARAMSITIO' => 'PARAM_SITIO', //opcional
 		..............................
-		);```
+		);
+```
 
 El m&eacute;todo getPaymentValues devolvera un arreglo con los siguiente valores:
 - StatusCode
