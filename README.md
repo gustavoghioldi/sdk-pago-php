@@ -28,3 +28,11 @@ En este caso hay que llamar a queryPayment, enviando SessionID, RequestKey y Ans
 <a name="ejemplo"></a>
 ## Ejemplo
 Existe un ejercicio de ejemplo en la carpeta del mismo nombre.
+
+<a name="test"></a>
+## Test
+Para utlilizar el modo test se debe pasar el valor FALSE en el constructor.
+
+```php
+$client = new DecidirConnector(FALSE);
+```
