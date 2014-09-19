@@ -12,16 +12,17 @@ N/A
 
 <a name="uso"></a>
 ## Uso
-1.Inicializar la clase correspondiente al conector (DecidirConnector), suministrando los parámetros necesarios.
+1.Inicializar la clase correspondiente al conector (DecidirConnector).
 ```php
 $client = new DecidirConnector();
 ```
 
 2.Solicitud de autorización
-En este caso hay que llamar a getPaymentValues. Uno de los parámetros devueltos por esta función es la url necesaria para redireccionar a la página web segura de Decidir.
+En este caso hay que llamar a getPaymentValues(). 
 ```php
 $values = $client->getPaymentValues($options);
 ```
+Este m&eacute;todo devolvera:
 
 3.Confirmación de transacción.
 En este caso hay que llamar a queryPayment, enviando SessionID, RequestKey y AnswerKey. Este método devuelve el resumen de los datos de la transacción, para que puedan ser mostrados al cliente.
