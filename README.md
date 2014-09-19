@@ -1,4 +1,5 @@
 # Decidir: SDK php
+***
 Conector en php con el SPS Decidir.
 
  * [Instalación](#instalacion)
