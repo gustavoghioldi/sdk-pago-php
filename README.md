@@ -45,13 +45,16 @@ $options = array (
 ```
 
 El m&eacute;todo getPaymentValues devolvera un arreglo con los siguiente valores:
-- StatusCode
-- StatusMessage
-- URL_Request
-- RequestKey
-- EncodingMethod
-- Payload
-
+```php
+$options = array(
+'StatusCode'=>'',
+'StatusMessage'=>'',
+'URL_Request'=>'',
+'RequestKey'=>'',
+'EncodingMethod'=>'',
+'Payload'=>''
+);
+```
 3.Confirmación de transacción.
 En este caso hay que llamar a queryPayment, enviando SessionID, RequestKey y AnswerKey. Este método devuelve el resumen de los datos de la transacción, para que puedan ser mostrados al cliente.
 
